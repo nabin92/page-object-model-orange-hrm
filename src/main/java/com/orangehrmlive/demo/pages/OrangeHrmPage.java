@@ -3,39 +3,47 @@ package com.orangehrmlive.demo.pages;
 import com.orangehrmlive.demo.session.OrangeHrmEngine;
 import com.orangehrmlive.demo.web.DriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
 
 public abstract class OrangeHrmPage {
-
-    public OrangeHrmPage() {
-        PageFactory.initElements(getDriver(), this);
-    }
-
-    public OrangeHrmPage openBrowser() {
-        return this;
-    }
-
-    public void loadLoginPage() {
-    }
+    
 
     public void enterUserName() {
     }
-    //   public abstract void loadLoginPage();
 
+    public void enterPassword() {
+    }
+    //   public abstract void loadLoginPage();
+    public void clickLoginButton(){
+    }
 
     public OrangeHrmEngine getSession() {
         return (OrangeHrmEngine) Reporter.getCurrentTestResult().getTestContext().getAttribute("session");
     }
-
+    public OrangeHrmPage doLogin() {
+        return null;
+    }
     public DriverManager getDriverManager() {
         return getSession().getDriverManager();
     }
 
     public WebDriver getDriver() {
-        System.out.println("Inside Get Driver: "+getSession().getDriverManager().getDriver().getTitle());
         return getSession().getDriverManager().getDriver();
+    }
+
+    public void enterValue(WebElement webElement, String value){
+        getSession().getDriverManager().enterValue(webElement, value);
+    }
+
+    public void click(WebElement webElement){
+        getSession().getDriverManager().click(webElement);
+    }
+
+    public String getText(WebElement webElement){
+        return getSession().getDriverManager().getText(webElement);
     }
 }
 
