@@ -27,7 +27,6 @@ public class OrangeHrmEngine {
 
     public DriverManager getDriverManager() {
         return driverManager;
-
     }
 
     public void quit() {
