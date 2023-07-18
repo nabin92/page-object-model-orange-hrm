@@ -1,6 +1,6 @@
 package com.orangehrmlive.demo;
 
-import com.orangehrmlive.demo.pages.DashBoardPage;
+import com.orangehrmlive.demo.pages.AdminPage;
 import com.orangehrmlive.demo.pages.LoginPage;
 import com.orangehrmlive.demo.session.OrangeHrmEngine;
 import org.testng.Assert;
@@ -31,19 +31,19 @@ public class AdminTest {
 
     @Test
     public void shouldSortUserNameColumn() {
-        DashBoardPage dashBoardPage =  loginPage
+        AdminPage adminPage =
+                loginPage
                         .loadLoginPage()
                         .doLogin()
-                        .clickAdmin();
-        List<String> userNames = dashBoardPage.getUserNameList();
+                        .setSubMenu("Admin", AdminPage.class);
+
+        List<String> userNames = adminPage.getUserNameList();
         Collections.sort(userNames, Comparator.reverseOrder());
 
-        dashBoardPage.clickUserNameSortIcon();
-        List<String> actualListAfterSorting = dashBoardPage.getUserNameList();
+        adminPage.clickUserNameSortIcon();
+        List<String> actualListAfterSorting = adminPage.getUserNameList();
 
-        Assert.assertEquals(userNames,actualListAfterSorting);
-
-
+        Assert.assertEquals(userNames, actualListAfterSorting);
 
     }
 }
