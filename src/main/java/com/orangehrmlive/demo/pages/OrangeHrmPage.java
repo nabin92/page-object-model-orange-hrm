@@ -2,6 +2,7 @@ package com.orangehrmlive.demo.pages;
 
 import com.orangehrmlive.demo.session.OrangeHrmEngine;
 import com.orangehrmlive.demo.web.DriverManager;
+import lombok.SneakyThrows;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public abstract class OrangeHrmPage {
@@ -33,6 +35,12 @@ public abstract class OrangeHrmPage {
         return getDriverManager().readTextFromWebElements(locator);
     }
 
+    @SneakyThrows
+    public <T> T setSubMenu(String menu, Class<T> clazz) {
+        click(By.partialLinkText(menu));
+        return clazz.getDeclaredConstructor().newInstance();
+
+    }
 
 }
 

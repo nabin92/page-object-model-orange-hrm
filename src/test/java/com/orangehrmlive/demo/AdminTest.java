@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AdminTest {
     OrangeHrmEngine orangeHrmEngine;
@@ -37,13 +38,12 @@ public class AdminTest {
                         .doLogin()
                         .setSubMenu("Admin", AdminPage.class);
 
-        List<String> userNames = adminPage.getUserNameList();
-        Collections.sort(userNames, Comparator.reverseOrder());
+        List<String> expectedSortedUserNames = adminPage.getUserNameList().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
 
         adminPage.clickUserNameSortIcon();
-        List<String> actualListAfterSorting = adminPage.getUserNameList();
+        List<String> actualSortedUserNames = adminPage.getUserNameList();
 
-        Assert.assertEquals(userNames, actualListAfterSorting);
+        Assert.assertEquals(expectedSortedUserNames, actualSortedUserNames);
 
     }
 }
