@@ -31,8 +31,21 @@ public abstract class OrangeHrmPage {
         getDriverManager().click(locator);
     }
 
+    public void enterText(By locator, String text) {
+        getDriverManager().enterText(locator, text);
+    }
+
+    public String readText(By locator) {
+        return getDriverManager().readText(locator);
+    }
+
+
     public List<String> getTextFromWebElements(By locator) {
         return getDriverManager().readTextFromWebElements(locator);
+    }
+
+    public void waitForElementToBePresent(By locator) {
+        getDriverManager().waitForElementToBePresent(locator);
     }
 
     @SneakyThrows

@@ -25,6 +25,7 @@ public class DriverManager {
 
     public void load(String url) {
         setWindow(window -> window.maximize());
+        setTimeout(timeouts -> timeouts.implicitlyWait(Duration.ofSeconds(5000)));
         driver.get(url);
     }
 
@@ -56,6 +57,15 @@ public class DriverManager {
         performAction(locator, WebElement::click);
     }
 
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
+    public void waitForElementToBePresent(By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5000));
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    }
+
     public List<String> readTextFromWebElements(By locator) {
         return driver.findElements(locator).stream().map(WebElement::getText).collect(Collectors.toList());
     }
@@ -65,7 +75,7 @@ public class DriverManager {
     }
 
     public void quit() {
-        if(driver!=null)
+        if (driver != null)
             driver.quit();
     }
 
