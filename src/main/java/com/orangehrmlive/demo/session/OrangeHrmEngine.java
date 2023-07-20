@@ -13,15 +13,13 @@ public class OrangeHrmEngine {
 
     public OrangeHrmEngine() {
         driverManager = new DriverManager();
-        driverManager.openBrowser();
     }
 
     public LoginPage init() {
-
-        if (Reporter.getCurrentTestResult().getTestContext().getAttribute("session") == null)
+        if (Reporter.getCurrentTestResult().getTestContext().getAttribute("session") == null) {
             Reporter.getCurrentTestResult().getTestContext().setAttribute("session", this);
-        getDriverManager().setTimeout(t -> t.implicitlyWait(Duration.ofSeconds(2000)));
-
+            driverManager.openBrowser();
+        }
         return new LoginPage();
     }
 
@@ -29,8 +27,12 @@ public class OrangeHrmEngine {
         return driverManager;
     }
 
-    public void quit() {
-        driverManager.quit();
+    public void close() {
+
+        if (getDriverManager() != null) {
+            Reporter.getCurrentTestResult().getTestContext().setAttribute("session", null);
+            getDriverManager().quit();
+        }
 
     }
 }

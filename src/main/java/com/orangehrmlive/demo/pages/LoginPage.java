@@ -13,6 +13,7 @@ public class LoginPage extends OrangeHrmPage {
     private By loginButton = By.cssSelector("button[class*=\"orangehrm-login-button\"]");
 
     public LoginPage loadLoginPage() {
+        getSession().getDriverManager().getDriver().manage().window().maximize();
         getDriverManager().load("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         return this;
     }

@@ -56,7 +56,7 @@ public class DriverManager {
         performAction(locator, WebElement::click);
     }
 
-    public List<String> readTextFromWebElements(By locator){
+    public List<String> readTextFromWebElements(By locator) {
         return driver.findElements(locator).stream().map(WebElement::getText).collect(Collectors.toList());
     }
 
@@ -65,6 +65,8 @@ public class DriverManager {
     }
 
     public void quit() {
-        driver.quit();
+        if(driver!=null)
+            driver.quit();
     }
+
 }

@@ -13,22 +13,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class AdminTest {
-    OrangeHrmEngine orangeHrmEngine;
-    LoginPage loginPage;
-
-    @BeforeMethod
-    public void init() {
-        orangeHrmEngine = new OrangeHrmEngine();
-        loginPage = orangeHrmEngine.init();
-
-    }
-
-    @AfterMethod
-    public void quit() {
-        orangeHrmEngine.quit();
-
-    }
+public class AdminTest extends BaseTest {
 
     @Test
     public void shouldSortUserNameColumn() {

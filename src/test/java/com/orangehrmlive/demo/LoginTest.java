@@ -8,22 +8,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class LoginTest {
-    OrangeHrmEngine orangeHrmEngine;
-    LoginPage loginPage;
+public class LoginTest extends BaseTest {
 
-    @BeforeMethod
-    public void init() {
-        orangeHrmEngine = new OrangeHrmEngine();
-        loginPage = orangeHrmEngine.init();
-
-    }
-
-    @AfterMethod
-    public void quit() {
-        orangeHrmEngine.quit();
-
-    }
 
     @Test
     public void shouldBeAbleToLogin() {
